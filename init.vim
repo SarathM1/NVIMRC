@@ -28,8 +28,8 @@
   " call dein#add('Shougo/denite.nvim')
   " call dein#add('ctrlpvim/ctrlp.vim')
 
-  call dein#add('davidhalter/jedi-vim', {'on_ft': 'python'})
-  call dein#add('zchee/deoplete-jedi')
+  " call dein#add('davidhalter/jedi-vim', {'on_ft': 'python'})
+  " call dein#add('zchee/deoplete-jedi')
   " call dein#add('terryma/vim-multiple-cursors')
 
   " call dein#local('~/GitHub', {},['operator-next'])
