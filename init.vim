@@ -20,6 +20,9 @@
   call dein#add('vim-airline/vim-airline-themes')
   call dein#add('tpope/vim-surround')
   call dein#add('tomtom/tcomment_vim')
+  " FZF
+  call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+  call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
 " deoplete stuff
   " call dein#add('Shougo/deoplete.nvim')
@@ -56,15 +59,23 @@
   set noshowmode
   set noswapfile
   filetype on
+  set cursorline
   set  number
   set relativenumber
   set numberwidth=1
 
 " indentation settings
-  set tabstop=8
-  set expandtab
+  set tabstop=4
   set softtabstop=4
   set shiftwidth=4
+  set shiftround
+  set expandtab
+
+  " Make search case insensitive
+  set hlsearch
+  set incsearch
+  set ignorecase
+  set smartcase
 
   set conceallevel=0
   set virtualedit=
@@ -103,14 +114,7 @@
 " exit insert, dd line, enter insert
   inoremap <c-d> <esc>ddi
 
-" this is the best, let me tell you why
-" how annoying is that everytime you want to do something in vim
-" you have to do shift-; to get :, can't we just do ;?
-" Plus what does ; do anyways??
-" if you do have a plugin that needs ;, you can just swap the mapping
-" nnoremap : ;
-" give it a try and you will like it
-  nnoremap ; :
+  " File path completion 'ctr f'
   inoremap <c-f> <c-x><c-f>
 
 " Align blocks of text and keep them selected
@@ -243,7 +247,7 @@
   let g:airline#extensions#neomake#error_symbol='• '
   let g:airline#extensions#neomake#warning_symbol='•  '
   let g:airline_symbols.branch = ''
-  let g:airline_theme='bubblegum'
+  let g:airline_theme='deus'
   cnoreabbrev <silent> <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'Sayonara' : 'x'
   tmap <leader>x <c-\><c-n>:bp! <BAR> bd! #<CR>
   nmap <leader>t :term<cr>
@@ -292,3 +296,10 @@
 
 "}}}
 
+" FZF -------------------------------------------------------------------{{{
+
+    nnoremap <c-p> :Files<CR>
+    nnoremap <Leader>b :Buffers<CR>
+    nnoremap <Leader>l :Lines<CR>
+    nnoremap <Leader>bl :BLines<CR>
+"}}}
