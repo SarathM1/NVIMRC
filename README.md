@@ -1,0 +1,2 @@
+# NVIMRC
+my neovim setup
