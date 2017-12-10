@@ -303,3 +303,8 @@
     nnoremap <Leader>l :Lines<CR>
     nnoremap <Leader>bl :BLines<CR>
 "}}}
+
+" Split Windows -------------------------------------------------------------------{{{
+    nmap sh :split<Return><C-w>w
+    nmap sv :vsplit<Return><C-w>w
+"}}}
