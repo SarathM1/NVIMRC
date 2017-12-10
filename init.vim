@@ -125,7 +125,7 @@
 
 " Themes, Commands, etc  ----------------------------------------------------{{{
   syntax on
-  colorscheme desert
+  colorscheme slate
 "}}}
 
 " MarkDown ------------------------------------------------------------------{{{
