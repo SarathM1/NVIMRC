@@ -41,6 +41,7 @@
   " call dein#local('~/GitHub', {},['operator-next'])
   call dein#add('ryanoasis/vim-devicons')
   call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
+
   if dein#check_install()
     call dein#install()
     let pluginsExist=1
@@ -128,7 +129,7 @@
 
 " Themes, Commands, etc  ----------------------------------------------------{{{
   syntax on
-  colorscheme slate
+  colorscheme wombat256mod
 "}}}
 
 " MarkDown ------------------------------------------------------------------{{{
