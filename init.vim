@@ -24,6 +24,9 @@
   call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
+  " Vim Dispatch
+  call dein#add('tpope/vim-dispatch')
+
 " deoplete stuff
   " call dein#add('Shougo/deoplete.nvim')
   " call dein#add('Shougo/deol.nvim')
@@ -304,7 +307,15 @@
     nnoremap <Leader>bl :BLines<CR>
 "}}}
 
-" Split Windows -------------------------------------------------------------------{{{
+" Split  Windows -------------------------------------------------------------------{{{
     nmap sh :split<Return><C-w>w
     nmap sv :vsplit<Return><C-w>w
+"}}}
+
+
+" Save file using Ctrs-------------------------------------------------------------------{{{
+   noremap <silent> <C-S>          :update<CR>
+   vnoremap <silent> <C-S>         <C-C>:update<CR>
+   inoremap <silent> <C-S>         <C-O>:update<CR>
+
 "}}}
