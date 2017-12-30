@@ -25,20 +25,12 @@
   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
   call dein#add('mhartington/oceanic-next')
 
-" deoplete stuff
-  " call dein#add('Shougo/deoplete.nvim')
-  " call dein#add('Shougo/deol.nvim')
-
-  " call dein#add('Shougo/denite.nvim')
-  " call dein#add('ctrlpvim/ctrlp.vim')
-
-  " call dein#add('davidhalter/jedi-vim', {'on_ft': 'python'})
-  " call dein#add('zchee/deoplete-jedi')
-  " call dein#add('terryma/vim-multiple-cursors')
-
-  " call dein#local('~/GitHub', {},['operator-next'])
   call dein#add('ryanoasis/vim-devicons')
   call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
+
+  call dein#add('SirVer/ultisnips')
+  call dein#add('honza/vim-snippets')
+
   if dein#check_install()
     call dein#install()
     let pluginsExist=1
@@ -145,11 +137,11 @@
 
 " Python --------------------------------------------------------------------{{{
 
-  let g:python_host_prog = '/usr/local/bin/python2'
-  let g:python3_host_prog = '/usr/local/bin/python3'
-  " let $NVIM_PYTHON_LOG_FILE='nvim-python.log'
-  let g:jedi#auto_vim_configuration = 0
-  let g:jedi#documentation_command = "<leader>k"
+  " let g:python_host_prog = '/usr/local/bin/python2'
+  " let g:python3_host_prog = '/usr/bin/python3'
+  " " let $NVIM_PYTHON_LOG_FILE='nvim-python.log'
+  " let g:jedi#auto_vim_configuration = 0
+  " let g:jedi#documentation_command = "<leader>k"
 
 " }}}
 
@@ -324,3 +316,25 @@ inoremap <C-n> :nohl<CR>
    inoremap <silent> <C-S>         <C-O>:update<CR>
 
 "}}}
+
+" Inset header files automatically-------------------------------------------------------------------{{{
+" Reference: https://www.thegeekstuff.com/2008/12/vi-and-vim-autocommand-3-steps-to-add-custom-header-to-your-file/
+autocmd bufnewfile *.c so /home/teroot/vim_templates/c_header.txt
+autocmd bufnewfile *.c exe "1," . 10 . "g/File Name:.*/s//File Name: " .expand("%")
+autocmd bufnewfile *.c exe "1," . 10 . "g/Date:.*/s//Date: " .strftime("%d-%m-%Y")
+autocmd Bufwritepre,filewritepre *.c execute "normal ma"
+autocmd Bufwritepre,filewritepre *.c exe "1," . 10 . "g/Last Modified:.*/s/Last Modified:.*/Last Modified: " .strftime("%c")
+autocmd bufwritepost,filewritepost *.c execute "normal `a"
+"}}}
+
+
+" Ultisnips-------------------------------------------------------------------{{{
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsSnippetDirectories = ["/home/teroot/vim_templates/Ultisnips", "Ultisnips"]
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" }}}
