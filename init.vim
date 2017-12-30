@@ -249,7 +249,6 @@
   let g:airline#extensions#neomake#error_symbol='• '
   let g:airline#extensions#neomake#warning_symbol='•  '
   let g:airline_symbols.branch = ''
-  " let g:airline_theme='deus'
   let g:airline_theme='oceanicnext'
   cnoreabbrev <silent> <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'Sayonara' : 'x'
   tmap <leader>x <c-\><c-n>:bp! <BAR> bd! #<CR>
@@ -307,7 +306,7 @@
     nnoremap <Leader>bl :BLines<CR>
 "}}}
 
-" Split Windows -------------------------------------------------------------------{{{
+" Split  Windows -------------------------------------------------------------------{{{
     nmap sh :split<Return><C-w>w
     nmap sv :vsplit<Return><C-w>w
 "}}}
@@ -318,3 +317,10 @@
 noremap <C-n> :nohl<CR>
 vnoremap <C-n> :nohl<CR>
 inoremap <C-n> :nohl<CR>
+
+" Save file using Ctrs-------------------------------------------------------------------{{{
+   noremap <silent> <C-S>          :update<CR>
+   vnoremap <silent> <C-S>         <C-C>:update<CR>
+   inoremap <silent> <C-S>         <C-O>:update<CR>
+
+"}}}
