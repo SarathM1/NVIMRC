@@ -23,6 +23,7 @@
   " FZF
   call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+  call dein#add('mhartington/oceanic-next')
 
 " deoplete stuff
   " call dein#add('Shougo/deoplete.nvim')
@@ -125,7 +126,8 @@
 
 " Themes, Commands, etc  ----------------------------------------------------{{{
   syntax on
-  colorscheme slate
+  " colorscheme slate
+  colorscheme OceanicNext
 "}}}
 
 " MarkDown ------------------------------------------------------------------{{{
@@ -247,7 +249,8 @@
   let g:airline#extensions#neomake#error_symbol='• '
   let g:airline#extensions#neomake#warning_symbol='•  '
   let g:airline_symbols.branch = ''
-  let g:airline_theme='deus'
+  " let g:airline_theme='deus'
+  let g:airline_theme='oceanicnext'
   cnoreabbrev <silent> <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'Sayonara' : 'x'
   tmap <leader>x <c-\><c-n>:bp! <BAR> bd! #<CR>
   nmap <leader>t :term<cr>
@@ -308,3 +311,10 @@
     nmap sh :split<Return><C-w>w
     nmap sv :vsplit<Return><C-w>w
 "}}}
+
+" Bind nohl
+" Removes highlight of your last search
+" ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
+noremap <C-n> :nohl<CR>
+vnoremap <C-n> :nohl<CR>
+inoremap <C-n> :nohl<CR>
