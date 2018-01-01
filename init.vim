@@ -319,7 +319,7 @@ inoremap <C-n> :nohl<CR>
 
 " Inset header files automatically-------------------------------------------------------------------{{{
 " Reference: https://www.thegeekstuff.com/2008/12/vi-and-vim-autocommand-3-steps-to-add-custom-header-to-your-file/
-autocmd bufnewfile *.c so /home/teroot/vim_templates/c_header.txt
+autocmd bufnewfile *.c so $HOME/vim_templates/c_header.txt
 autocmd bufnewfile *.c exe "1," . 10 . "g/File Name:.*/s//File Name: " .expand("%")
 autocmd bufnewfile *.c exe "1," . 10 . "g/Date:.*/s//Date: " .strftime("%d-%m-%Y")
 autocmd Bufwritepre,filewritepre *.c execute "normal ma"
@@ -330,7 +330,7 @@ autocmd bufwritepost,filewritepost *.c execute "normal `a"
 
 " Ultisnips-------------------------------------------------------------------{{{
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsSnippetDirectories = ["/home/teroot/vim_templates/Ultisnips", "Ultisnips"]
+let g:UltiSnipsSnippetDirectories = ["/home/sm/vim_templates/Ultisnips", "Ultisnips"]
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
