@@ -41,7 +41,6 @@
 " }}}
 
 " Neovim Settings
-  " set termguicolors
   set clipboard+=unnamedplus
   set pastetoggle=<f2>
   set nopaste
@@ -115,8 +114,15 @@
 "}}}"
 
 " Themes, Commands, etc  ----------------------------------------------------{{{
-  syntax on
+  " syntax on
   " colorscheme slate
+  " Or if you have Neovim >= 0.1.5
+    if (has("termguicolors"))
+    set termguicolors
+    endif
+
+    " Theme
+    syntax enable
   colorscheme OceanicNext
 "}}}
 
