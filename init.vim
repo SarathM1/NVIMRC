@@ -52,8 +52,8 @@
 " }}}
 
 " Neovim Settings
-  set termguicolors
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  " set termguicolors
+  " let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   set clipboard+=unnamedplus
   set pastetoggle=<f2>
   set nopaste
@@ -65,7 +65,7 @@
   filetype on
   set cursorline
   set  number
-  set relativenumber
+  " set relativenumber
   set numberwidth=1
 
 " indentation settings
