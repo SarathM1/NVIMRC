@@ -123,7 +123,7 @@
 
     " Theme
     syntax enable
-  colorscheme koehler
+  colorscheme OceanicNext
 "}}}
 
 " MarkDown ------------------------------------------------------------------{{{
