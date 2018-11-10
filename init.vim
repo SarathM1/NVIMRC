@@ -30,6 +30,7 @@
 
   call dein#add('SirVer/ultisnips')
   call dein#add('honza/vim-snippets')
+  call dein#add('sbdchd/neoformat')
 
   if dein#check_install()
     call dein#install()
