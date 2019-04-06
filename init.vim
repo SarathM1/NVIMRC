@@ -10,16 +10,19 @@
   call dein#add('Shougo/dein.vim')
   call dein#add('haya14busa/dein-command.vim')
 " syntax
-  call dein#add('tpope/vim-fugitive')
+  call dein#add('tpope/vim-fugitive', { 'on_cmd': [ 'Git', 'Gstatus', 'Gwrite', 'Glog', 'Gcommit', 'Gblame', 'Ggrep', 'Gdiff', ] })
   call dein#add('jreybert/vimagit', {'on_cmd': ['Magit', 'MagitOnly']})
   call dein#add('airblade/vim-gitgutter')
-  call dein#add('scrooloose/nerdtree')
+  " call dein#add('scrooloose/nerdtree')
+  call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTreeToggle'})
+
   call dein#add('Xuyuanp/nerdtree-git-plugin')
   call dein#add('neomake/neomake', {'on_cmd': 'Neomake'})
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('tpope/vim-surround')
+  call dein#add('tpope/vim-surround', {'on_map': {'n' : ['cs', 'ds', 'ys'], 'x' : 'S'}, 'depends' : 'vim-repeat'})
   call dein#add('tomtom/tcomment_vim')
+  " call dein#add('tomtom/tcomment_vim', {'on_cmd' : 'TComment'})
   " FZF
   call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
