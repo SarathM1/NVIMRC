@@ -22,7 +22,6 @@
   call dein#add('vim-airline/vim-airline-themes')
   call dein#add('tpope/vim-surround', {'on_map': {'n' : ['cs', 'ds', 'ys'], 'x' : 'S'}, 'depends' : 'vim-repeat'})
   call dein#add('tomtom/tcomment_vim')
-  " call dein#add('tomtom/tcomment_vim', {'on_cmd' : 'TComment'})
   " FZF
   call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
