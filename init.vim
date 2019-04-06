@@ -13,9 +13,7 @@ call dein#add('haya14busa/dein-command.vim')
 call dein#add('tpope/vim-fugitive', { 'on_cmd': [ 'Git', 'Gstatus', 'Gwrite', 'Glog', 'Gcommit', 'Gblame', 'Ggrep', 'Gdiff', ] })
 call dein#add('jreybert/vimagit', {'on_cmd': ['Magit', 'MagitOnly']})
 call dein#add('airblade/vim-gitgutter')
-" call dein#add('scrooloose/nerdtree')
 call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTreeToggle'})
-
 call dein#add('Xuyuanp/nerdtree-git-plugin')
 call dein#add('neomake/neomake', {'on_cmd': 'Neomake'})
 call dein#add('vim-airline/vim-airline')
@@ -26,13 +24,17 @@ call dein#add('tomtom/tcomment_vim')
 call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 call dein#add('mhartington/oceanic-next')
-
 call dein#add('ryanoasis/vim-devicons')
 call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
-
 call dein#add('SirVer/ultisnips')
 call dein#add('honza/vim-snippets')
 call dein#add('sbdchd/neoformat')
+
+call dein#add('Shougo/deoplete.nvim')
+if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+endif
 
 if dein#check_install()
     call dein#install()
@@ -351,4 +353,12 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+" }}}
+
+" deoplete-------------------------------------------------------------------{{{
+let g:deoplete#enable_at_startup = 1
+" It is recommended to set up a serperate python environment for neovim
+" in both python2 and python3 to avoid reinstalling neovim python package
+let g:python3_host_prog = '/home/sm/miniconda3/envs/vim_env/bin/python'
+let g:python_host_prog = '/home/sm/miniconda3/envs/vim_env2/bin/python'
 " }}}
