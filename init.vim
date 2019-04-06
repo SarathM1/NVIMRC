@@ -215,6 +215,8 @@
   let g:NERDTreeDirArrowExpandable = ''
   let g:NERDTreeDirArrowCollapsible = ''
   let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
+  " To solve a bug; https://github.com/scrooloose/nerdtree/issues/911
+  let g:NERDTreeNodeDelimiter = "\u00a0"
 "}}}
 
 " Vim-Devicons -------------------------------------------------------------0{{{
@@ -229,6 +231,11 @@
 
 " ,f to format code, requires formatters: read the docs
   noremap <silent> <leader>f :Neoformat<CR>
+
+  augroup fmt
+    autocmd!
+    autocmd BufWritePre * undojoin | Neoformat
+  augroup END
 
 " }}}
 
