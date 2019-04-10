@@ -46,6 +46,8 @@ filetype plugin indent on
 " }}}
 
 " Neovim Settings
+set termguicolors
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set clipboard+=unnamedplus
 set pastetoggle=<f2>
 set nopaste
@@ -57,6 +59,7 @@ set noswapfile
 filetype on
 set cursorline
 set  number
+set relativenumber
 set numberwidth=1
 
 " indentation settings
@@ -344,6 +347,13 @@ autocmd bufwritepost,filewritepost *.c execute "normal `a"
 "}}}
 
 
+" fileType-------------------------------------------------------------------{{{
+" Not detected automatically by vim
+autocmd BufNewFile,BufRead *.launch set syntax=xml filetype=xml
+autocmd BufNewFile,BufRead *.conf.local set syntax=tmux
+autocmd BufRead,BufNewFile *.yml set expandtab shiftwidth=2
+"}}}
+
 " Ultisnips-------------------------------------------------------------------{{{
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsSnippetDirectories = ["/home/sm/vim_templates/Ultisnips", "Ultisnips"]
@@ -359,6 +369,6 @@ let g:UltiSnipsEditSplit="vertical"
 let g:deoplete#enable_at_startup = 1
 " It is recommended to set up a serperate python environment for neovim
 " in both python2 and python3 to avoid reinstalling neovim python package
-let g:python3_host_prog = '/home/sm/miniconda3/envs/vim_env/bin/python'
-let g:python_host_prog = '/home/sm/miniconda3/envs/vim_env2/bin/python'
+let g:python3_host_prog = '/home/teroot/anaconda3/envs/vim_env/bin/python'
+let g:python_host_prog = '/home/teroot/anaconda3/envs/vim_env2/bin/python'
 " }}}
