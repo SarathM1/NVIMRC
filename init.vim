@@ -369,6 +369,19 @@ let g:UltiSnipsEditSplit="vertical"
 let g:deoplete#enable_at_startup = 1
 " It is recommended to set up a serperate python environment for neovim
 " in both python2 and python3 to avoid reinstalling neovim python package
-let g:python3_host_prog = expand('~/miniconda3/envs/vim_env3/bin/python')
-let g:python_host_prog = expand('~/miniconda3/envs/vim_env2/bin/python')
+
+" Use miniconda3 or anaconda3
+if isdirectory(expand('~/miniconda3/envs/vim_env3/bin/'))
+    let g:python3_host_prog = expand('~/miniconda3/envs/vim_env3/bin/python')
+endif
+if isdirectory(expand('~/miniconda3/envs/vim_env2/bin/'))
+    let g:python_host_prog = expand('~/miniconda3/envs/vim_env2/bin/python')
+endif
+
+if isdirectory(expand('~/anaconda3/envs/vim_env3/bin/'))
+    let g:python3_host_prog = expand('~/anaconda3/envs/vim_env3/bin/python')
+endif
+if isdirectory(expand('~/anaconda3/envs/vim_env2/bin/'))
+    let g:python_host_prog = expand('~/anaconda3/envs/vim_env2/bin/python')
+endif
 " }}}
