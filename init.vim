@@ -25,6 +25,12 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set clipboard+=unnamedplus
 set pastetoggle=<f2>
 set nopaste
+" To auto-remove trailing white spaces on save
+autocmd BufWritePre * %s/\s\+$//e
+set noshowmode
+set noswapfile
+set cursorline
+set numberwidth=1
 
 inoremap jk <ESC>
 nmap <C-n> :NERDTreeToggle<CR>
