@@ -161,7 +161,6 @@ let g:NERDTreeGitStatusWithFlags = 1
 
 let g:NERDTreeIgnore = ['^node_modules$']
 
-colorscheme gruvbox
 
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
