@@ -24,8 +24,6 @@ call plug#end()
 " User , as leader key
 let mapleader = ','
 set number
-set termguicolors
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set clipboard+=unnamedplus
 set pastetoggle=<f2>
 set nopaste
@@ -75,9 +73,6 @@ vmap < <gv
 vmap > >gv
 
 " Theme settings
-if (has("termguicolors"))
-set termguicolors
-endif
 syntax enable
 colorscheme OceanicNext
 " colorscheme gruvbox
