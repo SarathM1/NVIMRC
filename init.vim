@@ -10,8 +10,6 @@ Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdcommenter'
 "Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
-Plug 'christoomey/vim-tmux-navigator'
-
 Plug 'morhetz/gruvbox'
 
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
