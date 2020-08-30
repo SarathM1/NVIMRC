@@ -21,6 +21,8 @@ Plug 'mhartington/oceanic-next'
 call plug#end()
 
 " Basic Settings
+" User , as leader key
+let mapleader = ','
 set number
 set termguicolors
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
