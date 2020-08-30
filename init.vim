@@ -66,8 +66,12 @@ set inccommand=split
 
 " No need for ex mode
 nnoremap Q <nop>
+
+" Align blocks of text and keep them selected
+vmap < <gv
+vmap > >gv
+
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-inoremap jk <ESC>
 nmap <C-n> :NERDTreeToggle<CR>
 vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
