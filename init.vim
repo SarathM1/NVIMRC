@@ -59,6 +59,14 @@ autocmd BufReadPost *
 " center buffer around cursor when opening files
 autocmd BufRead * normal zz
 
+
+" Show effects of find and replace
+" in a split window
+set inccommand=split
+
+" No need for ex mode
+nnoremap Q <nop>
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 inoremap jk <ESC>
 nmap <C-n> :NERDTreeToggle<CR>
 vmap ++ <plug>NERDCommenterToggle
