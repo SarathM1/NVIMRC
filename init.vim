@@ -42,6 +42,10 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+" Prevent vim from auto inserting
+" Comments
+au BufEnter * set fo-=c fo-=r fo-=o
+
 
 " Reload file when changes from external editor
 set autoread
