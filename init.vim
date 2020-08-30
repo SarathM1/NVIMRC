@@ -43,6 +43,18 @@ set incsearch
 set ignorecase
 set smartcase
 
+" Reload file when changes from external editor
+set autoread
+au FocusGained,BufEnter * :silent! !
+
+" Remember cursor position between vim sessions
+autocmd BufReadPost *
+\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+\   exe "normal! g'\"" |
+\ endif
+" center buffer around cursor when opening files
+autocmd BufRead * normal zz
+
 inoremap jk <ESC>
 nmap <C-n> :NERDTreeToggle<CR>
 vmap ++ <plug>NERDCommenterToggle
