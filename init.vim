@@ -22,6 +22,8 @@ Plug 'mhartington/oceanic-next'
 call plug#end()
 
 " Basic Settings
+" Use Ctrl-s to save
+noremap <c-s> :w<CR>
 " User , as leader key
 let mapleader = ','
 set number
@@ -93,22 +95,9 @@ let g:airline#extensions#neomake#error_symbol='• '
 let g:airline#extensions#neomake#warning_symbol='•  '
 let g:airline_symbols.branch = ''
 let g:airline_theme='oceanicnext'
-cnoreabbrev <silent> <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'Sayonara' : 'x'
-tmap <leader>x <c-\><c-n>:bp! <BAR> bd! #<CR>
 nmap <leader>t :term<cr>
 nmap <leader>, :bnext<CR>
-tmap <leader>, <C-\><C-n>:bnext<cr>
 nmap <leader>. :bprevious<CR>
-tmap <leader>. <C-\><C-n>:bprevious<CR>
-tmap <leader>1  <C-\><C-n><Plug>AirlineSelectTab1
-tmap <leader>2  <C-\><C-n><Plug>AirlineSelectTab2
-tmap <leader>3  <C-\><C-n><Plug>AirlineSelectTab3
-tmap <leader>4  <C-\><C-n><Plug>AirlineSelectTab4
-tmap <leader>5  <C-\><C-n><Plug>AirlineSelectTab5
-tmap <leader>6  <C-\><C-n><Plug>AirlineSelectTab6
-tmap <leader>7  <C-\><C-n><Plug>AirlineSelectTab7
-tmap <leader>8  <C-\><C-n><Plug>AirlineSelectTab8
-tmap <leader>9  <C-\><C-n><Plug>AirlineSelectTab9
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -199,3 +188,20 @@ endfunction
 
 " Highlight currently open buffer in NERDTree
 autocmd BufEnter * call SyncTree()
+
+" Fzf.vim settings
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+"FZF key-bindings in normal mode
+nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <Leader>f :Ag<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>/ :BLines<CR>
+nnoremap <silent> <Leader>' :Marks<CR>
+nnoremap <silent> <Leader>g :Commits<CR>
+nnoremap <silent> <Leader>H :Helptags<CR>
+nnoremap <silent> <Leader>hh :History<CR>
+nnoremap <silent> <Leader>h: :History:<CR>
+nnoremap <silent> <Leader>h/ :History/<CR>
