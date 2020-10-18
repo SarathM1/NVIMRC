@@ -17,7 +17,12 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhartington/oceanic-next'
+
+" LSP and related plugins
+" Requires latest nightly build
 Plug 'neovim/nvim-lsp'
+Plug 'nvim-lua/diagnostic-nvim'
+
 
 "if has('nvim')
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -87,8 +92,10 @@ vmap > >gv
 
 " Theme settings
 syntax enable
+set termguicolors
 colorscheme OceanicNext
-" colorscheme gruvbox
+"colorscheme gruvbox
+
 
 " vim-airline ---------------------------------------------------------------{{{
 
@@ -172,24 +179,6 @@ let g:NERDTreeGitStatusWithFlags = 1
 let g:NERDTreeIgnore = ['^node_modules$']
 
 
-" sync open file with NERDTree
-" " Check if NERDTree is open or active
-function! IsNERDTreeOpen()
-    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-    if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-        NERDTreeFind
-        wincmd p
-    endif
-endfunction
-
-" Highlight currently open buffer in NERDTree
-autocmd BufEnter * call SyncTree()
-
 " Fzf.vim settings
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -210,7 +199,7 @@ nnoremap <silent> <Leader>h/ :History/<CR>
 
 " LSP Settings start
 lua << EOF
-require'nvim_lsp'.pyls.setup{}
+require'nvim_lsp'.pyls.setup{on_attach=require'diagnostic'.on_attach}
 EOF
 
 set completeopt-=preview
@@ -228,6 +217,22 @@ nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 "nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <c-l> <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <silent> <leader>n :NextDiagnosticCycle<CR>
+
+let g:diagnostic_enable_virtual_text = 1
+let g:diagnostic_virtual_text_prefix = ' '
+
+let g:diagnostic_auto_popup_while_jump = 1
+let g:diagnostic_insert_delay = 1
+
+let g:diagnostic_show_sign = 0
+" Use below options only if show_sign = 1
+"call sign_define("LspDiagnosticsErrorSign", {"text" : "E", "texthl" : "LspDiagnosticsError"})
+"call sign_define("LspDiagnosticsWarningSign", {"text" : "W", "texthl" : "LspDiagnosticsWarning"})
+"call sign_define("LspDiagnosticsInformationSign", {"text" : "I", "texthl" : "LspDiagnosticsInformation"})
+"call sign_define("LspDiagnosticsHintSign", {"text" : "H", "texthl" : "LspDiagnosticsHint"})
+
 " LSP Settings stop
 
 " highlight text being yanked
