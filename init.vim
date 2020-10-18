@@ -20,11 +20,11 @@ Plug 'mhartington/oceanic-next'
 Plug 'neovim/nvim-lsp'
 
 "if has('nvim')
-  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "else
-  "Plug 'Shougo/deoplete.nvim'
-  "Plug 'roxma/nvim-yarp'
-  "Plug 'roxma/vim-hug-neovim-rpc'
+"Plug 'Shougo/deoplete.nvim'
+"Plug 'roxma/nvim-yarp'
+"Plug 'roxma/vim-hug-neovim-rpc'
 "endif
 "let g:deoplete#enable_at_startup = 1
 
@@ -67,9 +67,9 @@ au FocusGained,BufEnter * :silent! !
 
 " Remember cursor position between vim sessions
 autocmd BufReadPost *
-\ if line("'\"") > 0 && line ("'\"") <= line("$") |
-\   exe "normal! g'\"" |
-\ endif
+            \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+            \   exe "normal! g'\"" |
+            \ endif
 " center buffer around cursor when opening files
 autocmd BufRead * normal zz
 
@@ -140,8 +140,8 @@ let g:airline#extensions#tabline#buffer_idx_format = {
 
 " Use miniconda3 or anaconda3
 if isdirectory(expand('/Users/sarath/.pyenv/shims/'))
-let g:python3_host_prog = expand('/Users/sarath/.pyenv/shims/python3')
-let g:python_host_prog = expand('/Users/sarath/.pyenv/shims/python2')
+    let g:python3_host_prog = expand('/Users/sarath/.pyenv/shims/python3')
+    let g:python_host_prog = expand('/Users/sarath/.pyenv/shims/python2')
 endif
 " }}}
 
@@ -158,15 +158,15 @@ let g:NERDTreeGitStatusWithFlags = 1
 "let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 "let g:NERDTreeGitStatusNodeColorization = 1
 "let g:NERDTreeColorMapCustom = {
-    "\ "Staged"    : "#0ee375",
-    "\ "Modified"  : "#d9bf91",
-    "\ "Renamed"   : "#51C9FC",
-    "\ "Untracked" : "#FCE77C",
-    "\ "Unmerged"  : "#FC51E6",
-    "\ "Dirty"     : "#FFBD61",
-    "\ "Clean"     : "#87939A",
-    "\ "Ignored"   : "#808080"
-    "\ }
+            "\ "Staged"    : "#0ee375",
+            "\ "Modified"  : "#d9bf91",
+            "\ "Renamed"   : "#51C9FC",
+            "\ "Untracked" : "#FCE77C",
+            "\ "Unmerged"  : "#FC51E6",
+            "\ "Dirty"     : "#FFBD61",
+            "\ "Clean"     : "#87939A",
+            "\ "Ignored"   : "#808080"
+            "\ }
 
 
 let g:NERDTreeIgnore = ['^node_modules$']
@@ -175,16 +175,16 @@ let g:NERDTreeIgnore = ['^node_modules$']
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
 function! IsNERDTreeOpen()
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
 " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
 function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
+    if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+        NERDTreeFind
+        wincmd p
+    endif
 endfunction
 
 " Highlight currently open buffer in NERDTree
@@ -232,6 +232,6 @@ nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 
 " highlight text being yanked
 augroup LuaHighlight
-  autocmd!
-  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
 augroup END
