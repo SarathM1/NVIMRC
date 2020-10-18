@@ -203,7 +203,7 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 "FZF key-bindings in normal mode
-nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <Leader>f :Ag<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>/ :BLines<CR>
