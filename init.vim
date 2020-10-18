@@ -17,16 +17,16 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhartington/oceanic-next'
-Plug 'neovim/nvim-lspconfig'
+Plug 'neovim/nvim-lsp'
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
+"if has('nvim')
+  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+  "Plug 'Shougo/deoplete.nvim'
+  "Plug 'roxma/nvim-yarp'
+  "Plug 'roxma/vim-hug-neovim-rpc'
+"endif
+"let g:deoplete#enable_at_startup = 1
 
 " Initialize plugin system
 call plug#end()
@@ -139,18 +139,9 @@ let g:airline#extensions#tabline#buffer_idx_format = {
 " in both python2 and python3 to avoid reinstalling neovim python package
 
 " Use miniconda3 or anaconda3
-if isdirectory(expand('~/miniconda3/envs/vim_env3/bin/'))
-let g:python3_host_prog = expand('~/miniconda3/envs/vim_env3/bin/python')
-endif
-if isdirectory(expand('~/miniconda3/envs/vim_env2/bin/'))
-let g:python_host_prog = expand('~/miniconda3/envs/vim_env2/bin/python')
-endif
-
-if isdirectory(expand('~/anaconda3/envs/vim_env3/bin/'))
-let g:python3_host_prog = expand('~/anaconda3/envs/vim_env3/bin/python')
-endif
-if isdirectory(expand('~/anaconda3/envs/vim_env2/bin/'))
-let g:python_host_prog = expand('~/anaconda3/envs/vim_env2/bin/python')
+if isdirectory(expand('/Users/sarath/.pyenv/shims/'))
+let g:python3_host_prog = expand('/Users/sarath/.pyenv/shims/python3')
+let g:python_host_prog = expand('/Users/sarath/.pyenv/shims/python2')
 endif
 " }}}
 
