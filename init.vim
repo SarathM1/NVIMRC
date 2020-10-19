@@ -38,7 +38,7 @@ call plug#end()
 
 " Basic Settings
 " Use Ctrl-s to save
-noremap <c-s> :w<CR>
+noremap <c-s> :update<CR>
 " User , as leader key
 let mapleader = ','
 set number
