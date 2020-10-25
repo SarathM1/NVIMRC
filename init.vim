@@ -24,43 +24,82 @@ Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/diagnostic-nvim'
 
 
-"if has('nvim')
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-"Plug 'Shougo/deoplete.nvim'
-"Plug 'roxma/nvim-yarp'
-"Plug 'roxma/vim-hug-neovim-rpc'
-"endif
-"let g:deoplete#enable_at_startup = 1
+Plug 'nvim-lua/completion-nvim'   " Nvim completion engine
+Plug 'SirVer/ultisnips'           " Snippets engine
+
+Plug 'tpope/vim-surround'
 
 " Initialize plugin system
 call plug#end()
+
+
+" Put your non-Plugin stuff after this line
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => SETTINGS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Common
+syntax enable
+set noswapfile        " Do not create swap files
+set number            " Display line numbers
+set showcmd           " Show typed commands
+set showmatch         " Show matching parenthesis
+"set cmdheight=1       " Command line height
+set cursorline        " Highlight current line
+
+
+set wildmenu          " Visual autocomplete for command menu
+set wildmode=longest:list,full
+"set laststatus=2      " Always diplay status bar
+set noshowmode        " Don't show current vim mode
+"set updatetime=250    " Update time 250ms
+
+
+set backspace=indent,eol,start " Backspace through lines
+
+
+" Search
+set ignorecase         " The case of normal letters is ignored.
+set smartcase          " Ignore case when the pattern contains lowercase letters only.
+set incsearch          " Start searching before pressing enter
+set nows               " Once hitting the search bottom it stops instead of restarting from the first match
+set hlsearch          " Enable hlsearch
+" Show effects of find and replace
+" in a split window
+set inccommand=split
+
+"Formatting
+set autoindent        " Auto indentation. To paste use paste mode: :set paste
+set wrap              " Wrap long lines
+set shiftwidth=4      " Use indents of 4 spaces
+set expandtab         " Tabs are spaces, not tabs
+set tabstop=4         " An indentation every four columns
+set nojoinspaces      " Prevents inserting two spaces after punctuation on a join (J)
+set splitright        " Puts new vsplit windows to the right of the current
+set splitbelow        " Puts new split windows to the bottom of the current
+set softtabstop=4
+set shiftround
+
+" Theme settings
+if has('nvim') || has('termguicolors')
+  set termguicolors
+endif
+colorscheme OceanicNext
+
+"colorscheme gruvbox
 
 " Basic Settings
 " Use Ctrl-s to save
 noremap <c-s> :update<CR>
 " User , as leader key
 let mapleader = ','
-set number
 set clipboard+=unnamedplus
 set pastetoggle=<f2>
 set nopaste
 " To auto-remove trailing white spaces on save
 autocmd BufWritePre * %s/\s\+$//e
-set noshowmode
-set noswapfile
-set cursorline
-" indentation settings
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set shiftround
-set expandtab
 " Make search case insensitive
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
 " Prevent vim from auto inserting
 " Comments
 au BufEnter * set fo-=c fo-=r fo-=o
@@ -79,22 +118,17 @@ autocmd BufReadPost *
 autocmd BufRead * normal zz
 
 
-" Show effects of find and replace
-" in a split window
-set inccommand=split
 
 " No need for ex mode
 nnoremap Q <nop>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => MAPPINGS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Align blocks of text and keep them selected
 vmap < <gv
 vmap > >gv
-
-" Theme settings
-syntax enable
-set termguicolors
-colorscheme OceanicNext
-"colorscheme gruvbox
 
 
 " vim-airline ---------------------------------------------------------------{{{
@@ -208,7 +242,15 @@ set completeopt-=preview
 autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 1000)
 
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+" LSP configuration
+nnoremap <leader>gD    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>gi    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <leader>af    <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>ar    <cmd>lua vim.lsp.buf.rename()<CR>
+"nnoremap <leader>=     <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <leader>ai    <cmd>lua vim.lsp.buf.incoming_calls()<CR>
+nnoremap <leader>ao    <cmd>lua vim.lsp.buf.outgoing_calls()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
@@ -216,7 +258,6 @@ nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-"nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <c-l> <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
 nnoremap <silent> <leader>n :NextDiagnosticCycle<CR>
 
