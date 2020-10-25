@@ -29,6 +29,12 @@ Plug 'SirVer/ultisnips'           " Snippets engine
 
 Plug 'tpope/vim-surround'
 
+" Track the engine.
+Plug 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
+
 " Initialize plugin system
 call plug#end()
 
@@ -44,7 +50,7 @@ syntax enable
 set noswapfile        " Do not create swap files
 set number            " Display line numbers
 set showcmd           " Show typed commands
-set showmatch         " Show matching parenthesis
+"set showmatch         " Show matching parenthesis
 "set cmdheight=1       " Command line height
 set cursorline        " Highlight current line
 
@@ -231,12 +237,35 @@ nnoremap <silent> <Leader>h: :History:<CR>
 nnoremap <silent> <Leader>h/ :History/<CR>
 
 
-" LSP Settings start
 lua << EOF
-require'nvim_lsp'.pyls.setup{on_attach=require'diagnostic'.on_attach}
+local on_attach_vim = function(client)
+    require'completion'.on_attach(client)
+    require'diagnostic'.on_attach(client)
+end
+require'nvim_lsp'.clangd.setup{on_attach=on_attach_vim}
+require'nvim_lsp'.pyls.setup{on_attach=on_attach_vim}
 EOF
 
-set completeopt-=preview
+"If you want completion-nvim to be set up for all buffers
+" instead of only being used when lsp is enabled, call the on_attach function directly:
+" Use completion-nvim in every buffer
+autocmd BufEnter * lua require'completion'.on_attach()
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+"set completeopt-=preview
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
+
+"By default auto popup is enabled, turn it off by
+let g:completion_enable_auto_popup = 0
+"map <c-z> to manually trigger completion
+imap <silent> <c-space> <Plug>(completion_trigger)
+
+" possible value: 'UltiSnips', 'Neosnippet', 'vim-vsnip', 'snippets.nvim'
+" integrate ultisnips and completion.nvim
+let g:completion_enable_snippet = 'UltiSnips'
 
 " use omni completion provided by lsp
 autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
