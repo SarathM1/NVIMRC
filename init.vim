@@ -130,7 +130,7 @@ nnoremap Q <nop>
 
 " Sometimes it is helpful if your working directory is always the
 " same as the file you are editing. To achieve this, put the following in your vimrc:
-autocmd BufEnter * silent! lcd %:p:h
+" autocmd BufEnter * silent! lcd %:p:h
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MAPPINGS
