@@ -245,10 +245,9 @@ nnoremap <silent> <Leader>h/ :History/<CR>
 lua << EOF
 local on_attach_vim = function(client)
     require'completion'.on_attach(client)
-    require'diagnostic'.on_attach(client)
 end
-require'nvim_lsp'.clangd.setup{on_attach=on_attach_vim}
-require'nvim_lsp'.pyls.setup{on_attach=on_attach_vim}
+require'lspconfig'.clangd.setup{on_attach=on_attach_vim}
+require'lspconfig'.pyls.setup{on_attach=on_attach_vim}
 EOF
 
 "If you want completion-nvim to be set up for all buffers
@@ -293,20 +292,30 @@ nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> <c-l> <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
-nnoremap <silent> <leader>n :NextDiagnosticCycle<CR>
+nnoremap <silent> <leader>n <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
-let g:diagnostic_enable_virtual_text = 1
-let g:diagnostic_virtual_text_prefix = ' '
+lua << EOF
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- This will disable virtual text, like doing:
+    -- let g:diagnostic_enable_virtual_text = 1
+    virtual_text = {
+      spacing = 2,
+      prefix = '',
+    },
 
-let g:diagnostic_auto_popup_while_jump = 1
-let g:diagnostic_insert_delay = 1
+    -- This is similar to:
+    -- let g:diagnostic_show_sign = 1
+    -- To configure sign display,
+    --  see: ":help vim.lsp.diagnostic.set_signs()"
+    signs = false,
 
-let g:diagnostic_show_sign = 0
-" Use below options only if show_sign = 1
-"call sign_define("LspDiagnosticsErrorSign", {"text" : "E", "texthl" : "LspDiagnosticsError"})
-"call sign_define("LspDiagnosticsWarningSign", {"text" : "W", "texthl" : "LspDiagnosticsWarning"})
-"call sign_define("LspDiagnosticsInformationSign", {"text" : "I", "texthl" : "LspDiagnosticsInformation"})
-"call sign_define("LspDiagnosticsHintSign", {"text" : "H", "texthl" : "LspDiagnosticsHint"})
+    -- This is similar to:
+    -- "let g:diagnostic_insert_delay = 1"
+    update_in_insert = true,
+  }
+)
+EOF
 
 " LSP Settings stop
 
