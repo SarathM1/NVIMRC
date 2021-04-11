@@ -244,6 +244,11 @@ nnoremap <silent> <Leader>h/ :History/<CR>
 " run like --> :A --python <search_term>
 command! -nargs=+ -complete=file A call fzf#vim#ag_raw(<q-args>)
 
+" FZF layout
+"let g:fzf_layout = { 'window': '-tabnew' }
+"let g:fzf_layout = { 'window': '10new' }
+let g:fzf_layout = { 'window': 'enew' }
+
 
 lua << EOF
 local on_attach_vim = function(client)
