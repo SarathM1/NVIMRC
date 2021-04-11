@@ -240,6 +240,9 @@ nnoremap <silent> <Leader>H :Helptags<CR>
 nnoremap <silent> <Leader>hh :History<CR>
 nnoremap <silent> <Leader>h: :History:<CR>
 nnoremap <silent> <Leader>h/ :History/<CR>
+" To pass command line arguments to ag like --python -w etc
+" run like --> :A --python <search_term>
+command! -nargs=+ -complete=file A call fzf#vim#ag_raw(<q-args>)
 
 
 lua << EOF
