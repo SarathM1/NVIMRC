@@ -21,7 +21,6 @@ Plug 'mhartington/oceanic-next'
 " LSP and related plugins
 " Requires latest nightly build
 Plug 'neovim/nvim-lsp'
-Plug 'nvim-lua/diagnostic-nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 
@@ -290,31 +289,31 @@ nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> <c-l> <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <silent> <c-l> <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 nnoremap <silent> <leader>n <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
-"lua << EOF
-"vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  "vim.lsp.diagnostic.on_publish_diagnostics, {
-    "-- This will disable virtual text, like doing:
-    "-- let g:diagnostic_enable_virtual_text = 1
-    "virtual_text = {
-      "spacing = 2,
-      "prefix = '',
-    "},
+lua << EOF
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- This will disable virtual text, like doing:
+    -- let g:diagnostic_enable_virtual_text = 1
+    virtual_text = {
+      spacing = 2,
+      prefix = ' ',
+    },
 
-    "-- This is similar to:
-    "-- let g:diagnostic_show_sign = 1
-    "-- To configure sign display,
-    "--  see: ":help vim.lsp.diagnostic.set_signs()"
-    "signs = false,
+    -- This is similar to:
+    -- let g:diagnostic_show_sign = 1
+    -- To configure sign display,
+    --  see: ":help vim.lsp.diagnostic.set_signs()"
+    signs = false,
 
-    "-- This is similar to:
-    "-- "let g:diagnostic_insert_delay = 1"
-    "update_in_insert = true,
-  "}
-")
-"EOF
+    -- This is similar to:
+    -- "let g:diagnostic_insert_delay = 1"
+    update_in_insert = true,
+  }
+)
+EOF
 
 " Enable language server; LSP
 lua << EOF
