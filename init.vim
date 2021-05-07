@@ -22,6 +22,8 @@ Plug 'mhartington/oceanic-next'
 " Requires latest nightly build
 Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/diagnostic-nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
 
 
 Plug 'nvim-lua/completion-nvim'   " Nvim completion engine
@@ -242,22 +244,11 @@ nnoremap <silent> <Leader>h: :History:<CR>
 nnoremap <silent> <Leader>h/ :History/<CR>
 
 
-lua << EOF
-local on_attach_vim = function(client)
-    require'completion'.on_attach(client)
-end
-require'lspconfig'.clangd.setup{on_attach=on_attach_vim}
-require'lspconfig'.pyls.setup{on_attach=on_attach_vim}
-EOF
 
 "If you want completion-nvim to be set up for all buffers
 " instead of only being used when lsp is enabled, call the on_attach function directly:
 " Use completion-nvim in every buffer
 autocmd BufEnter * lua require'completion'.on_attach()
-
-" Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
-"set completeopt-=preview
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
@@ -294,30 +285,62 @@ nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> <c-l> <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
 nnoremap <silent> <leader>n <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
+"lua << EOF
+"vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  "vim.lsp.diagnostic.on_publish_diagnostics, {
+    "-- This will disable virtual text, like doing:
+    "-- let g:diagnostic_enable_virtual_text = 1
+    "virtual_text = {
+      "spacing = 2,
+      "prefix = '',
+    "},
+
+    "-- This is similar to:
+    "-- let g:diagnostic_show_sign = 1
+    "-- To configure sign display,
+    "--  see: ":help vim.lsp.diagnostic.set_signs()"
+    "signs = false,
+
+    "-- This is similar to:
+    "-- "let g:diagnostic_insert_delay = 1"
+    "update_in_insert = true,
+  "}
+")
+"EOF
+
+" Enable language server; LSP
 lua << EOF
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    -- This will disable virtual text, like doing:
-    -- let g:diagnostic_enable_virtual_text = 1
-    virtual_text = {
-      spacing = 2,
-      prefix = '',
-    },
-
-    -- This is similar to:
-    -- let g:diagnostic_show_sign = 1
-    -- To configure sign display,
-    --  see: ":help vim.lsp.diagnostic.set_signs()"
-    signs = false,
-
-    -- This is similar to:
-    -- "let g:diagnostic_insert_delay = 1"
-    update_in_insert = true,
-  }
-)
+require'lspconfig'.clangd.setup{}
+require'lspconfig'.pyls.setup{}
 EOF
 
 " LSP Settings stop
+
+" nvim-compe settings
+" For LSP autocompletion
+set completeopt=menuone,noselect
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable'
+let g:compe.throttle_time = 80
+let g:compe.source_timeout = 200
+let g:compe.incomplete_delay = 400
+let g:compe.max_abbr_width = 100
+let g:compe.max_kind_width = 100
+let g:compe.max_menu_width = 100
+let g:compe.documentation = v:true
+
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.calc = v:true
+let g:compe.source.nvim_lsp = v:true
+let g:compe.source.nvim_lua = v:true
+let g:compe.source.vsnip = v:true
+let g:compe.source.ultisnips = v:true
 
 " highlight text being yanked
 augroup LuaHighlight
