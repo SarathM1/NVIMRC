@@ -39,6 +39,9 @@ Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
 
+" For seeing the code structure using ctags
+Plug 'majutsushi/tagbar'
+
 " Initialize plugin system
 call plug#end()
 
@@ -160,7 +163,6 @@ let g:airline#extensions#neomake#error_symbol='• '
 let g:airline#extensions#neomake#warning_symbol='•  '
 let g:airline_symbols.branch = ''
 let g:airline_theme='oceanicnext'
-nmap <leader>t :term<cr>
 nmap <leader>, :bnext<CR>
 nmap <leader>. :bprevious<CR>
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -376,3 +378,7 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " auto-pairs
 au FileType python let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b'" : "'"})
+
+" For tagbar plugin
+" shows structure of the code
+map <leader>t :TagbarToggle<CR>
