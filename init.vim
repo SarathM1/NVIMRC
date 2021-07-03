@@ -42,6 +42,10 @@ Plug 'honza/vim-snippets'
 " For seeing the code structure using ctags
 Plug 'majutsushi/tagbar'
 
+" For org mode support
+Plug 'jceb/vim-orgmode'
+
+
 " Initialize plugin system
 call plug#end()
 
@@ -399,3 +403,10 @@ nnoremap <space>gb :Git branch<Space>
 nnoremap <space>go :Git checkout<Space>
 nnoremap <space>gp :Git push<CR>
 nnoremap <space>gl :Git pull<CR>
+
+" FOr compiling resume on save
+autocmd BufWritePost /Users/sarath/Documents/ml_prep/Resume/2021/main.tex silent! execute "!/Users/sarath/Documents/ml_prep/Resume/2021/run.sh >/dev/null 2>&1" | redraw!
+
+nnoremap <space>oo :silent !/Users/sarath/Documents/ml_prep/Resume/2021/open_pdf.sh<CR>
+
+
